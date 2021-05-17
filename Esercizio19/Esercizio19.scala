@@ -1,28 +1,29 @@
 /*
+Scrivere un metodo Scala query(studenti:List[(String,Int)], esami:List[(String,String)]):Int 
+che, data una lista studenti di coppie (studente, età) e una lista esami di coppie (studente, esame),
+ restituisce l’età degli studenti che hanno svolto il maggior numero di esami.
 
-Scrivere un metodo Scala longestSublist[T](p:T=>Boolean)(l:List[T]) che, dato un predicato p e una lista l,
- restituisce la più lunga sottolista di elementi consecutivi di l che soddisfano il predicato p. Se la soluzione non è unica, restituirne una qualsiasi.
-  Ad esempio, longestSublist((_:Int)>0)(List(-4,5,3,6,0,3,4,-1)) deve restituire List(5,3,6), 
-  che è la sottolista di elementi consecutivi positivi più lunga.
+Ad esempio, se:
 
-Suggerimento: usare il metodo foldLeft, consultando la documentazione della classe List.
+studenti = List(("Paola", 21), ("Luca", 22), ("Lucia", 21), ("Matteo",22))
+esami = List(("Paola","PFP"), ("Luca","SC"), ("Paola","DB"), ("Lucia","LTW"), ("Matteo","SO"), ("Lucia","PFP"))
+il risultato deve essere 21, infatti Paola e Lucia, che hanno 21 anni, hanno svolto complessivamente 4 esami, mentre Luca e Matteo, che hanno 22 anni,
+ ne hanno svolti 2.
+
+Suggerimento: usare metodi sulle liste (map, distinct, etc.)
+
+
 */
 
-object Esercizio19 extends App {
-
-    def longestSublist[T](p:T=>Boolean):List[T] => List[T] = {
-        def response( l:List[T]):List[T] = {
-            val counter = 0  
-            val res = l.foldLeft(0)(x:T, y:Int => x  ) 
-            println(res)    
-            l
-        }
-        response _
+object Esercizio18 extends App {
+    
+    def query(studenti:List[(String,Int)], esami:List[(String,String)]):Int = { 
+        studenti.map( stud => (esami.count( esame => stud._1 == esame._1    ) , stud._2) ).maxBy(elem => elem._1)._2
     }
+    
+    val studenti = List(("Paola", 21), ("Luca", 22), ("Lucia", 29), ("Matteo",22))
+    val esami = List(("Paola","PFP"), ("Luca","SC"), ("Paola","DB"),  ("Matteo","SO"), ("Lucia","PFP"))
 
-
-    println(longestSublist((_:Int)>0)(List(-4,5,3,6,0,3,4,-1))) 
+    println(query(studenti, esami))
 
 }
-
-
