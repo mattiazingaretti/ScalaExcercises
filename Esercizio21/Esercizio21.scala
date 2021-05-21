@@ -9,8 +9,12 @@ Ad esempio, generateSeq(5, 1, _*2) restituisce List(1,2,4,8,16).
 object Esercizio21 extends App {
 
     def generateSeq(n:Int , x:Int , f:Int => Int ) = {
-        val l = List(x)
         
+        def aux(i:Int, l:List[Int]):List[Int]= {
+            if (i == n) Nil
+            else f( l(i-1 )):: aux(i+1, l :+ f(l(i-1)))
+        }
+        x:: aux(1, List(x))
     }
 
     println(generateSeq(5, 1, _*2))
