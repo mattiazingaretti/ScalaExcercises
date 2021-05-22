@@ -1,0 +1,21 @@
+import Esercizio23._
+
+object E23Main extends App {
+    val (v,t) = profila {
+        println("Valutazione espressione...")
+        (1 to 1000000).map(_.toLong).sum
+    }
+
+    println("Valore prodotto: "+v+" (corretto: 500000500000)")
+    println("Tempo richiesto: "+t*1E-9+" secondi")
+
+    val (v1, t1 ) = profila{
+        println("Valutazione seconda espressione ...")
+        val l = for(i <- (1 to 1000000).toList ) yield i
+        l.sum
+    }
+
+    println("Valore prodotto: "+v1)
+    println("Tempo richiesto: "+t1*1E-9+" secondi")
+
+}
