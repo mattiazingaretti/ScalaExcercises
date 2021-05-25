@@ -20,24 +20,41 @@ Suggerimento: calcolare il massimo comun divisore di numeratore e denominatore p
 (o irriducibile). Ad esempio, 4/14 dovrebbe essere memorizzato in un oggetto Rational come 2/7.
 
 */
-object Esercizio25 {
 
+
+    
+object Esercizio25{
     object MathRational {
-        def getMCD(x:Int , y:Int) = {
-            def aux(min:Int , max:Int):Int ={
-                if (max == 0 ) 0
-                else if( y%max == 0 || m&&  r%t == 0 ) r 
-                else aux(t , r-1)
-            }
-            if (x == y) x max y 
-            else aux( if(x< y ) x else y , if (x > y ) x else y )
+        //algo Euclide
+        def getMCD(x:Int , y:Int):Int = {
+            if (y == 0) x
+            else {
+                val q = x/y 
+                val r = x % y 
+                getMCD(y, r)
+            } 
         }
+
+        def getMCM(x:Int , y:Int) = (x*y) / MathRational.getMCD(x,y) 
     }
 
 
-
-    class Rational(x:Int, y:Int){
+case class Rational(x:Int, y:Int){
         def getX() = this.x
         def getY() = this.y
-    }
+        val num = x/MathRational.getMCD(x, y) 
+        val den = y/MathRational.getMCD(x, y)
+        println(num, den)
+
+        def +(x:Rational) = (this.num + x.num )/ (this.den*x.den)
+
+        def -(r:Rational) = Rational(num*r.den-r.num*den, den*r.den)
+        def *(r:Rational) = Rational(num*r.num, den*r.den)
+        def /(r:Rational) = Rational(num*r.den, den*r.num)
+            def <(r:Rational) = num*r.den < den*r.num
+
+
 }
+
+}
+
