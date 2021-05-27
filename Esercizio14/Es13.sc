@@ -10,3 +10,7 @@ def mymap[T](l:List[T], f:T=> T):List[T] = {
     if (l == Nil) Nil
     else f(l.head) :: mymap(l.tail, f)
 }
+
+def test[T](l:T) = {
+    l
+}
