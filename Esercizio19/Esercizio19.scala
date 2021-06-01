@@ -15,7 +15,7 @@ Suggerimento: usare metodi sulle liste (map, distinct, etc.)
 
 */
 
-object Esercizio18 extends App {
+object Esercizio19 extends App {
     
     def query(studenti:List[(String,Int)], esami:List[(String,String)]):Int = { 
         studenti.map( stud => (esami.count( esame => stud._1 == esame._1    ) , stud._2) ).maxBy(elem => elem._1)._2
