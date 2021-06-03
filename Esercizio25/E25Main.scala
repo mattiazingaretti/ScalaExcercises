@@ -5,6 +5,11 @@ object E25Main extends App {
     val r2 = Rational(8, 6)
     val r3 = Rational(4, 14)
     
+    val r4 = Rational(36, 24)
+    val r5 = Rational(25,10 )
+    
+    println(r4 + r5)
+    println("____________________")
     println(r1+r2)  // stampa 34/21
     println(r1-r2)  // stampa -22/21
     println(r1*r2)  // stampa 8/21

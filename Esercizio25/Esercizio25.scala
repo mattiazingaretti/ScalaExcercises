@@ -45,10 +45,25 @@ case class Rational(x:Int, y:Int){
         val d = y/MathRational.getMCD(x, y)
 
 
-        def +(r:Rational) = Rational(n*r.d+r.n*d, d*r.d)
-        def -(r:Rational) = Rational(n*r.d-r.n*d, d*r.d)
-        def *(r:Rational) = Rational(n*r.n, d*r.d)
-        def /(r:Rational) = Rational(n*r.d, d*r.n)
+        def +(r:Rational) = {
+            val res = Rational(n*r.d+r.n*d, d*r.d)
+            Rational(res.n , res.d)
+        }
+
+        def -(r:Rational) ={
+            val res = Rational(n*r.d-r.n*d, d*r.d)
+            Rational(res.n , res.d)
+        }
+        
+        def *(r:Rational) ={
+             val res = Rational(n*r.n, d*r.d)
+            Rational(res.n , res.d)
+        }
+        
+        def /(r:Rational) = {
+            val res = Rational(n*r.d, d*r.n)
+            Rational(res.n , res.d)
+        } 
 
         def <(r:Rational) = n*r.d < d*r.n
 
