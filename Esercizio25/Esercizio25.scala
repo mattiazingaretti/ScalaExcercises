@@ -40,20 +40,24 @@ object Esercizio25{
 
 
 case class Rational(x:Int, y:Int){
-        def getX() = this.x
-        def getY() = this.y
-        val num = x/MathRational.getMCD(x, y) 
-        val den = y/MathRational.getMCD(x, y)
-        println(num, den)
 
-        def +(x:Rational) = (this.num + x.num )/ (this.den*x.den)
-
-        def -(r:Rational) = Rational(num*r.den-r.num*den, den*r.den)
-        def *(r:Rational) = Rational(num*r.num, den*r.den)
-        def /(r:Rational) = Rational(num*r.den, den*r.num)
-            def <(r:Rational) = num*r.den < den*r.num
+        val n = x/MathRational.getMCD(x, y) 
+        val d = y/MathRational.getMCD(x, y)
 
 
+        def +(r:Rational) = Rational(n*r.d+r.n*d, d*r.d)
+        def -(r:Rational) = Rational(n*r.d-r.n*d, d*r.d)
+        def *(r:Rational) = Rational(n*r.n, d*r.d)
+        def /(r:Rational) = Rational(n*r.d, d*r.n)
+
+        def <(r:Rational) = n*r.d < d*r.n
+
+        override def toString = this.x +"/" + this.y
+
+        override def equals(that:Any) = that match {
+            case r:Rational => n == r.n && d == r.d
+            case _ => false
+        }
 }
 
 }
